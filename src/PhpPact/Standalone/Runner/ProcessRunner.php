@@ -98,9 +98,10 @@ class ProcessRunner
             $this->setExitCode($exitCode);
             $logger->debug("Exit code: {$this->getExitCode()}");
 
+            $this->logger->info('out > ' . $this->getOutput());
+            $this->logger->error('err > ' . $this->getStderr());
+
             if ($this->getExitCode() !== 0) {
-                $this->logger->info('out > ' . $this->getOutput());
-                $this->logger->error('err > ' . $this->getStderr());
                 throw new \Exception("PactPHP Process returned non-zero exit code: {$this->getExitCode()}", $this->getExitCode());
             }
 
